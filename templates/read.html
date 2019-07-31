@@ -1,0 +1,67 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block title %}Read{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="form-group col-md-12 col-xs-12">
+            <label for="comment">Comment:</label>
+            <textarea class="form-control" rows="5" id="comment" placeholder="输入需要解析的内容。。。"></textarea>
+        </div>
+
+        <div class="btn btn-primary col-md-10 col-md-offset-1 col-xs-10 col-xs-offset-1" id="submit">
+            <span>提交</span>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div id="read_area" class="container">
+            {% for i in range(5) %}
+                {% set l=i-2 %}
+                <div class="content_line well well-sm col-xs-{{ 10-2*l|abs }} col-xs-offset-{{ 1+l|abs }} col-md-{{ 10-2*l|abs }} col-md-offset-{{ 1+l|abs }}"
+                     style="opacity: {{ (10-l|abs*2)/10 }};font-size: {{ 36-8*l|abs }}px;height: {{ 64-8*l|abs }}px;">
+                    <p class="display-text text-center">text</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">阅读速度</span>
+            <input id="speed" type="text" class="form-control" aria-label="..." placeholder="400">
+            <span class="input-group-addon">词/分钟</span>
+        </div>
+
+        <div class="footer navbar-fixed-bottom btn-group btn-group-justified" role="group" aria-label="...">
+            <div id="bt-restart" class="btn-group" role="group">
+                <button type="button" class="btn btn-success">开始</button>
+            </div>
+            <div id="bt-pause" class="btn-group" role="group">
+                <button type="button" class="btn btn-warning">暂停</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block styles %}
+    {{ super() }}
+    <style type="text/css">
+        .content_line {
+            margin-bottom: 0;
+        }
+
+        #read_area {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src={{ url_for('static', filename='js/read.js') }}></script>
+{% endblock %}

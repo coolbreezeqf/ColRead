@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  default_service:
+    build:  .
+    ports:
+      - "5211:5000"
+    restart: always
+    volumes:
+      - $PWD:/usr/share/app
+    command: flask run --host=0.0.0.0
+    environment:
+      - TZ=Asia/Shanghai
