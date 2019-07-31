@@ -85,9 +85,9 @@ bt_restart.on('click', function () {
     } else {
         return
     }
-    var bt = $('#bt-pause').children();
     if (paused) {
         paused = false
+        var bt = $('#bt-pause').children();
         bt.text('暂停');
     }
     start();
